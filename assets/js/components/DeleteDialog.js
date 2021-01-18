@@ -26,8 +26,8 @@ function DeleteDialog(props) {
                 <Button onClick={hide}>Cancel</Button>
                 <Button
                     onClick={() => {context.deleteMapObject({id: props.mapObject.id});
-                    hide();
-                }}>
+                        hide();
+                    }}>
                     Delete
                 </Button>
             </DialogActions>

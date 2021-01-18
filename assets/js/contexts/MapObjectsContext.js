@@ -15,7 +15,6 @@ class MapObjectsContextProvider extends React.Component {
     deleteMapObject(data) {
         axios.delete('/list/delete/' + data.id)
             .then(response => {
-                //message
                 let mapObjects = [...this.state.mapObjects];
                 let mapObject = mapObjects.find(mapObject => {
                     return mapObject.id === data.id;

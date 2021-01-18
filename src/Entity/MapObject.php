@@ -43,12 +43,12 @@ class MapObject
     private $description;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=4)
+     * @ORM\Column(type="float")
      */
     private $lat;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=4)
+     * @ORM\Column(type="float")
      */
     private $lon;
 
@@ -61,6 +61,14 @@ class MapObject
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
+
+    /**
+     * MapObject constructor.
+     */
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
     /**
      * @return int|null
@@ -171,19 +179,19 @@ class MapObject
     }
 
     /**
-     * @return null|string
+     * @return null|float
      */
-    public function getLat(): ?string
+    public function getLat(): ?float
     {
         return $this->lat;
     }
 
     /**
-     * @param string $lat
+     * @param float $lat
      *
      * @return MapObject
      */
-    public function setLat(string $lat): self
+    public function setLat(float $lat): self
     {
         $this->lat = $lat;
 
@@ -191,19 +199,19 @@ class MapObject
     }
 
     /**
-     * @return null|string
+     * @return null|float
      */
-    public function getLon(): ?string
+    public function getLon(): ?float
     {
         return $this->lon;
     }
 
     /**
-     * @param string $lon
+     * @param float $lon
      *
      * @return MapObject
      */
-    public function setLon(string $lon): self
+    public function setLon(float $lon): self
     {
         $this->lon = $lon;
 

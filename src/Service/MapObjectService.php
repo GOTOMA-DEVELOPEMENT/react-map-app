@@ -5,7 +5,6 @@ namespace App\Service;
 use App\Entity\MapObject;
 use App\Repository\MapObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class MapObjectService
@@ -49,5 +48,22 @@ class MapObjectService
         } catch (\Exception $exception) {
             //error
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getLastMapObject()
+    {
+        return $this->mapObjectRepository->findBy([], ['createdAt' => 'DESC'], 1)[0];
+    }
+
+    /**
+     * @param MapObject $mapObject
+     */
+    public function saveMapObject(MapObject $mapObject)
+    {
+        $this->entityManager->persist($mapObject);
+        $this->entityManager->flush();
     }
 }
