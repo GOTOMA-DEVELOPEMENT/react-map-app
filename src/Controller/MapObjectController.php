@@ -94,14 +94,4 @@ class MapObjectController extends AbstractController
 
         return $this->json([], 200);
     }
-
-    /**
-     * @Route("/get-last-map-object", name="get_last_map_object")
-     *
-     * @return JsonResponse
-     */
-    public function getLastAction(): JsonResponse
-    {
-        return $this->json($this->mapObjectService->getLastMapObject());
-    }
 }

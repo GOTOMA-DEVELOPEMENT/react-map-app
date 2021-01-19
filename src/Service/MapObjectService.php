@@ -51,14 +51,6 @@ class MapObjectService
     }
 
     /**
-     * @return array
-     */
-    public function getLastMapObject()
-    {
-        return $this->mapObjectRepository->findBy([], ['createdAt' => 'DESC'], 1)[0];
-    }
-
-    /**
      * @param MapObject $mapObject
      */
     public function saveMapObject(MapObject $mapObject)

@@ -1,17 +1,12 @@
 import React, {Fragment, useState} from 'react';
 import ReactMapGL from 'react-map-gl';
 import {fetchWeather} from "../api/fetchWeather";
-import {fetchLastObject} from "../api/fetchLastObject";
 import axios from 'axios';
 import WeatherDialog from './WeatherDialog'
 
 const MAP_BOX_TOKEN = 'pk.eyJ1Ijoid2tyemFrIiwiYSI6ImNrazFmZWJ1ZzBxa2wyb3J1dG4yN3VteHgifQ.ScbjKno9g57iEy6_xNFIqA';
 
 const MapView = () => {
-    function timeout(delay) {
-        return new Promise( res => setTimeout(res, delay) );
-    }
-
     const [viewport, setViewport] = useState({
         latitude: 51.76,
         longitude: 19.46,
@@ -37,14 +32,13 @@ const MapView = () => {
             "icon": data.weather[0].icon
         };
 
-        axios.post('/list/create', preparedData).then()
+        axios.post('/list/create', preparedData)
+            .then()
             .catch(error => {
                 console.log(error);
             });
 
-        await timeout(300);
-        const lastMapObj = await fetchLastObject();
-        setMapObjectToShow(lastMapObj);
+        setMapObjectToShow(preparedData);
         setWeatherInfoIsShown(true);
     };
 
