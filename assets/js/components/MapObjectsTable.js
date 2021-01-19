@@ -15,7 +15,6 @@ import Avatar from "@material-ui/core/Avatar";
 import format from 'dateformat';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import TableFooter from "@material-ui/core/TableFooter";
 
 const useStyles = makeStyles({
     root: {

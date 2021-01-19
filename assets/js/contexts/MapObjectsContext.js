@@ -28,7 +28,6 @@ class MapObjectsContextProvider extends React.Component {
                 this.setState({
                     mapObjects: mapObjects,
                 });
-
                 this.readMapObjects();
             })
             .catch(error => {
