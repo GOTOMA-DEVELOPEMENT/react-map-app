@@ -27,11 +27,31 @@ class MapObjectRepository extends ServiceEntityRepository
     public function getMostSearchedCity()
     {
         return $this->createQueryBuilder('map_object')
-            ->select('map_object.city', 'COUNT(map_object.city) as value_occurrence')
+            ->select('map_object.city', 'COUNT(map_object.city) as occurrence')
             ->groupBy('map_object.city')
-            ->orderBy('value_occurrence', 'DESC')
+            ->orderBy('occurrence', 'DESC')
             ->setMaxResults(1)
             ->getQuery()
             ->getSingleResult();
+    }
+
+    public function getTempStats()
+    {
+        return $this->createQueryBuilder('map_object')
+                    ->select(
+                        'MAX(map_object.temp) as maxTemp',
+                        'MIN(map_object.temp) as minTemp',
+                        'AVG(map_object.temp) as avgTemp'
+                        )
+                    ->getQuery()
+                    ->getSingleResult();
+    }
+
+    public function getNumberOfRecords()
+    {
+        return $this->createQueryBuilder('map_object')
+                    ->select('COUNT(map_object.id)')
+                    ->getQuery()
+                    ->getSingleScalarResult();
     }
 }

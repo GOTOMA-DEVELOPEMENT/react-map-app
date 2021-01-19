@@ -3,6 +3,7 @@ import ReactMapGL from 'react-map-gl';
 import {fetchWeather} from "../api/fetchWeather";
 import axios from 'axios';
 import WeatherDialog from './WeatherDialog'
+import CircularProgress from "./CircualProgress";
 
 const MAP_BOX_TOKEN = 'pk.eyJ1Ijoid2tyemFrIiwiYSI6ImNrazFmZWJ1ZzBxa2wyb3J1dG4yN3VteHgifQ.ScbjKno9g57iEy6_xNFIqA';
 
@@ -17,9 +18,11 @@ const MapView = () => {
 
     const [weatherInfoIsShown, setWeatherInfoIsShown] = useState(false);
     const [mapObjectToShow, setMapObjectToShow] = useState(null);
+    const [loaderIsShown, setloaderIsShown] = useState(false);
 
     const getLocationData = async(e) => {
         e.preventDefault();
+        setloaderIsShown(true);
         const data = await fetchWeather(e.lngLat[0], e.lngLat[1]);
         const preparedData = {
             "city": data.name,
@@ -33,17 +36,21 @@ const MapView = () => {
         };
 
         axios.post('/list/create', preparedData)
-            .then()
+            .then(response => {
+                setloaderIsShown(false);
+                setMapObjectToShow(preparedData);
+                setWeatherInfoIsShown(true);
+            })
             .catch(error => {
                 console.log(error);
             });
-
-        setMapObjectToShow(preparedData);
-        setWeatherInfoIsShown(true);
     };
 
     return (
         <Fragment>
+            {loaderIsShown && (
+                <CircularProgress/>
+            )}
             <ReactMapGL
                 {...viewport}
                 width="100vw"

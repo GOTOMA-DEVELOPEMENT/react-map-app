@@ -8,6 +8,9 @@ class MapObjectsContextProvider extends React.Component {
         super(props);
         this.state = {
             mapObjects: [],
+            mostSearchedCity: [],
+            tempStats: [],
+            numberOfSearches: []
         };
         this.readMapObjects();
     }
@@ -25,10 +28,12 @@ class MapObjectsContextProvider extends React.Component {
                 this.setState({
                     mapObjects: mapObjects,
                 });
+
+                this.readMapObjects();
             })
             .catch(error => {
                 console.log(error);
-            })
+            });
     }
 
     readMapObjects() {
@@ -36,6 +41,9 @@ class MapObjectsContextProvider extends React.Component {
             .then(response => {
                 this.setState({
                     mapObjects: response.data.mapObjects,
+                    mostSearchedCity: response.data.tableStats.mostSearchedCity,
+                    tempStats: response.data.tableStats.tempStats,
+                    numberOfSearches: response.data.tableStats.numberOfSearches,
                 });
             })
             .catch(error => {
@@ -48,6 +56,7 @@ class MapObjectsContextProvider extends React.Component {
             <MapObjectsContext.Provider value={{
                 ...this.state,
                 deleteMapObject: this.deleteMapObject.bind(this),
+                readMapObjects: this.readMapObjects.bind(this),
             }}>
                 {this.props.children}
             </MapObjectsContext.Provider>

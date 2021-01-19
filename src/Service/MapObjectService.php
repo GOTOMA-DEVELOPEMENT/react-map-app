@@ -33,7 +33,7 @@ class MapObjectService
     {
         return [
             'mapObjects' => $this->mapObjectRepository->findBy([], ['createdAt' => 'DESC']),
-            'mostSearchedCity'=> $this->mapObjectRepository->getMostSearchedCity(),
+            'tableStats'=> $this->getTableStats(),
         ];
     }
 
@@ -57,5 +57,17 @@ class MapObjectService
     {
         $this->entityManager->persist($mapObject);
         $this->entityManager->flush();
+    }
+
+    /**
+     * @return array
+     */
+    private function getTableStats()
+    {
+        return [
+            'mostSearchedCity'=> $this->mapObjectRepository->getMostSearchedCity(),
+            'tempStats' => $this->mapObjectRepository->getTempStats(),
+            'numberOfSearches' => $this->mapObjectRepository->getNumberOfRecords(),
+        ];
     }
 }

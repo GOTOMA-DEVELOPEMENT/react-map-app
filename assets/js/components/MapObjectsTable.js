@@ -14,6 +14,8 @@ import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import format from 'dateformat';
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import TableFooter from "@material-ui/core/TableFooter";
 
 const useStyles = makeStyles({
     root: {
@@ -103,7 +105,21 @@ function MapObjectsTable() {
                     onChangePage={handleChangePage}
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 />
-                <TableFooter></TableFooter>
+                    <Box component="span" fontWeight="fontWeightBold" display="block" p={1} m={1} bgcolor="background.paper">
+                        TOTAL SEARCHES: {context.numberOfSearches}
+                    </Box>
+                    <Box component="span" fontWeight="fontWeightBold" display="block" p={1} m={1} bgcolor="background.paper">
+                        MOST SEARCHED CITY: {context.mostSearchedCity.city} ({context.mostSearchedCity.occurrence})
+                    </Box>
+                    <Box component="span" fontWeight="fontWeightBold" display="block" p={1} m={1} bgcolor="background.paper">
+                        Temp MIN: {context.tempStats.minTemp}
+                    </Box>
+                    <Box component="span" fontWeight="fontWeightBold" display="block" p={1} m={1} bgcolor="background.paper">
+                        Temp MAX: {context.tempStats.maxTemp}
+                    </Box>
+                    <Box component="span" fontWeight="fontWeightBold" display="block" p={1} m={1} bgcolor="background.paper">
+                        Temp AVG: {parseFloat(context.tempStats.avgTemp).toFixed(2)}
+                    </Box>
             </Paper>
         </Fragment>
     );
