@@ -54,8 +54,7 @@ class MapObjectsContextProvider extends React.Component {
         return (
             <MapObjectsContext.Provider value={{
                 ...this.state,
-                deleteMapObject: this.deleteMapObject.bind(this),
-                readMapObjects: this.readMapObjects.bind(this),
+                deleteMapObject: this.deleteMapObject.bind(this)
             }}>
                 {this.props.children}
             </MapObjectsContext.Provider>
