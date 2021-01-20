@@ -8,9 +8,7 @@ class MapObjectsContextProvider extends React.Component {
         super(props);
         this.state = {
             mapObjects: [],
-            mostSearchedCity: [],
-            tempStats: [],
-            numberOfSearches: []
+            stats: {}
         };
         this.readMapObjects();
     }
@@ -40,9 +38,7 @@ class MapObjectsContextProvider extends React.Component {
             .then(response => {
                 this.setState({
                     mapObjects: response.data.mapObjects,
-                    mostSearchedCity: response.data.tableStats.mostSearchedCity,
-                    tempStats: response.data.tableStats.tempStats,
-                    numberOfSearches: response.data.tableStats.numberOfSearches,
+                    stats: response.data.tableStats
                 });
             })
             .catch(error => {

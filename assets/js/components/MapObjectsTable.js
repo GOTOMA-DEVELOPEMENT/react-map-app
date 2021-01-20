@@ -49,6 +49,9 @@ function MapObjectsTable() {
         setPage(0);
     };
 
+    const tempStats = (context.stats.tempStats || {});
+    const mostSearchedCity = (context.stats.mostSearchedCity || {});
+
     return (
         <Fragment>
             <Paper className={classes.root}>
@@ -105,19 +108,19 @@ function MapObjectsTable() {
                     onChangeRowsPerPage={handleChangeRowsPerPage}
                 />
                     <Box component="span" fontWeight="fontWeightBold" display="block" p={1} m={1} bgcolor="background.paper">
-                        TOTAL SEARCHES: {context.numberOfSearches}
+                        TOTAL SEARCHES: {context.stats.numberOfSearches}
                     </Box>
                     <Box component="span" fontWeight="fontWeightBold" display="block" p={1} m={1} bgcolor="background.paper">
-                        MOST SEARCHED CITY: {context.mostSearchedCity.city} ({context.mostSearchedCity.occurrence})
+                        MOST SEARCHED CITY: {mostSearchedCity.city} ({mostSearchedCity.occurrence})
                     </Box>
                     <Box component="span" fontWeight="fontWeightBold" display="block" p={1} m={1} bgcolor="background.paper">
-                        Temp MIN: {context.tempStats.minTemp}
+                        Temp MIN: {tempStats.minTemp}
                     </Box>
                     <Box component="span" fontWeight="fontWeightBold" display="block" p={1} m={1} bgcolor="background.paper">
-                        Temp MAX: {context.tempStats.maxTemp}
+                        Temp MAX: {tempStats.maxTemp}
                     </Box>
                     <Box component="span" fontWeight="fontWeightBold" display="block" p={1} m={1} bgcolor="background.paper">
-                        Temp AVG: {parseFloat(context.tempStats.avgTemp).toFixed(2)}
+                        Temp AVG: {parseFloat(tempStats.avgTemp).toFixed(2)}
                     </Box>
             </Paper>
         </Fragment>

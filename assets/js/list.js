@@ -8,12 +8,12 @@ import Navigation from "./components/Navigation";
 class List extends React.Component {
     render() {
         return (
-            <MapObjectsContextProvider>
                 <CssBaseline>
                     <Navigation/>
-                    <MapObjectsTable/>
+                    <MapObjectsContextProvider>
+                        <MapObjectsTable/>
+                    </MapObjectsContextProvider>
                 </CssBaseline>
-            </MapObjectsContextProvider>
         );
     }
 }
