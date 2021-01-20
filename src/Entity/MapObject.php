@@ -18,7 +18,7 @@ class MapObject
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $city;
 
@@ -87,11 +87,11 @@ class MapObject
     }
 
     /**
-     * @param string $city
+     * @param null|string $city
      *
      * @return MapObject
      */
-    public function setCity(string $city): self
+    public function setCity(?string $city): self
     {
         $this->city = $city;
 
